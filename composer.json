@@ -1,0 +1,27 @@
+{
+  "name": "light-framework",
+  "description": "A fast, simple PHP Framework",
+  "keywords": ["fast", "simple", "php", "framework"],
+  "author": [
+    {
+      "name": "zqhong",
+      "email": "i@zqhong.com",
+      "role": "Origin Developer"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "Application\\Controllers\\": "Application/Controllers",
+      "Application\\Models\\": "Application/Models",
+      "Services\\": "Services/"
+    },
+    "files": [
+      "Core/helper.php"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+/.idea
+Thumbs.db
+composer.lock
+composer.phar
+/logs
+.DS_Store

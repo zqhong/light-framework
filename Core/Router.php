@@ -59,8 +59,9 @@ class Router
      */
     public function dispatch($after = null)
     {
-        $uri = $this->getCurrentUri();
-        $curr_method = strtolower($_SERVER["REQUEST_METHOD"]);
+        $request = \Core\Request::getInstance();
+        $uri = $request->getPathInfo();
+        $curr_method = strtolower($request->getCurrMethod());
 
         foreach ($this->routes as $key => $route) {
             if ($this->found_route) {
@@ -121,7 +122,7 @@ class Router
 
             $controller = "\\Application\\Controllers\\" . $controller;
             $c = new $controller();
-            $c->$action(new \Core\Request());
+            $c->$action($request);
         }
 
         if (!empty($after)) {

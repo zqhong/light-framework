@@ -6,6 +6,7 @@
  * Time: 17:08
  */
 
+$logger->info("setting routes...");
 $router = new \Core\Router;
 
 // get方法，完整匹配（示例）
@@ -21,4 +22,5 @@ $router->get("/hello/:num/:num", function($num1, $num2) {
 
 
 // 除此之外，使用 controller/method 的方式匹配 uri
+$logger->info("router start dispatch ...");
 $router->dispatch();

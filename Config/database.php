@@ -15,5 +15,6 @@ $dbconfig = array(
     "password" => "",
 );
 
+$logger->info("setting database...");
 $db = new PDO(getDsn($dbconfig), $dbconfig['user'], $dbconfig['password']);
 \Application\Models\BaseModel::setDb($db);

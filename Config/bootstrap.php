@@ -19,6 +19,7 @@ define("CORE_DIR", BASE_DIR . DIRECTORY_SEPARATOR . "Core");
 define("SERVICES_DIR", BASE_DIR . DIRECTORY_SEPARATOR . "Services");
 define("TESTS_DIR", BASE_DIR . DIRECTORY_SEPARATOR . "Tests");
 define("VENDOR_DIR", BASE_DIR . DIRECTORY_SEPARATOR . "vendor");
+define("LOGS_DIR", BASE_DIR . DIRECTORY_SEPARATOR . "Logs");
 define("VIEW_BASE_PATH", BASE_DIR . DIRECTORY_SEPARATOR . "Application/Views");
 
 // env: development or production
@@ -45,8 +46,22 @@ if (defined("ENVIRONMENT")) {
 // autoload
 require_once VENDOR_DIR . DIRECTORY_SEPARATOR . "autoload.php";
 
+// logger
+$logger = Core\Logger\Logger::getInstance();
+$logger->setLevel(\Core\Logger\Logger::DEBUG);
+$logger->addHandler(new \Core\Logger\LoggerStreamHandler(LOGS_DIR . DIRECTORY_SEPARATOR . "application.log"));
+$logger->info("light-framework start...");
+
 // 设置内部字符编码为 UTF-8
-mb_internal_encoding("UTF-8");
+define("INTERNAL_ENCODING", "UTF-8");
+mb_internal_encoding(INTERNAL_ENCODING);
+$logger->info("setting default internal encoding: " . INTERNAL_ENCODING);
+
+// 设置时区
+$timezone = "PRC";
+define("DEFAULT_TIMEZONE", "PRC");
+@date_default_timezone_set('PRC');
+$logger->info("setting default timezone: " . DEFAULT_TIMEZONE);
 
 // database config
 require_once CONFIG_DIR . DIRECTORY_SEPARATOR . "database.php";

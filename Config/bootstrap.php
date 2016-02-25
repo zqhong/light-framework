@@ -22,6 +22,11 @@ define("VENDOR_DIR", BASE_DIR . DIRECTORY_SEPARATOR . "vendor");
 define("LOGS_DIR", BASE_DIR . DIRECTORY_SEPARATOR . "Logs");
 define("VIEW_BASE_PATH", BASE_DIR . DIRECTORY_SEPARATOR . "Application/Views");
 
+// 定义系统配置
+define("INTERNAL_ENCODING", "UTF-8");
+define("DEFAULT_TIMEZONE", "PRC");
+
+
 // env: development or production
 define("ENVIRONMENT", "development");
 
@@ -53,14 +58,11 @@ $logger->addHandler(new \Core\Logger\LoggerStreamHandler(LOGS_DIR . DIRECTORY_SE
 $logger->info("light-framework start...");
 
 // 设置内部字符编码为 UTF-8
-define("INTERNAL_ENCODING", "UTF-8");
 mb_internal_encoding(INTERNAL_ENCODING);
 $logger->info("setting default internal encoding: " . INTERNAL_ENCODING);
 
 // 设置时区
-$timezone = "PRC";
-define("DEFAULT_TIMEZONE", "PRC");
-@date_default_timezone_set('PRC');
+@date_default_timezone_set(DEFAULT_TIMEZONE);
 $logger->info("setting default timezone: " . DEFAULT_TIMEZONE);
 
 // database config

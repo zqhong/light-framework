@@ -63,7 +63,6 @@ class Validator
 
     /**
      * 验证方法
-     *
      */
     public function validate()
     {
@@ -97,6 +96,7 @@ class Validator
         if (count($this->errors)) {
             $this->success = false;
         }
+
     }
 
     /**

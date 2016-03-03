@@ -23,6 +23,5 @@ class BaseController
 
     public function __destruct()
     {
-
     }
 }

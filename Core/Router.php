@@ -121,8 +121,16 @@ class Router
             $action = "action" . ucfirst($action);
 
             $controller = "\\Application\\Controllers\\" . $controller;
-            $c = new $controller();
-            $c->$action($request);
+
+            try {
+                if (!class_exists($controller)) {
+                    throw new ClassNotFoundException("Class {$controller} not found");
+                }
+                $c = new $controller();
+                $c->$action($request);
+            } catch (ClassNotFoundException $e) {
+                echo "Class not found: ".$e->message();
+            }
         }
 
         if (!empty($after)) {
@@ -208,37 +216,5 @@ class Router
     public function error($callback)
     {
         $this->error_callback = $callback;
-    }
-
-    private function getCurrentUri()
-    {
-        $uri = $_SERVER["REQUEST_URI"];
-        // url non rewrited. example: [REQUEST_URI] => /index.php/c/m/         [SCRIPT_NAME] => /index.php
-        if (0 === strpos($uri, $_SERVER["SCRIPT_NAME"])) {
-            $uri = substr($uri, strlen($_SERVER["SCRIPT_NAME"]));
-        }
-
-        // url rewrited:     example: [REQUEST_URI] => /c/m/                   [SCRIPT_NAME] => /index.php
-        if (0 === strpos($uri, dirname($_SERVER["SCRIPT_NAME"]))) {
-            $uri = substr($uri, strlen(dirname($_SERVER["SCRIPT_NAME"])));
-        }
-
-        if (empty($uri)) {
-            return "/";
-        }
-
-        // ignore query params
-        if (strstr($uri, "?")) {
-            $uri = substr($uri, 0, strpos($uri, "?"));
-        }
-
-        // filter '//', './'
-        $uri = str_replace(array('//', './'), '/', $uri, $count);
-        while (0 !== $count) {
-            $uri = str_replace('//', '/', $uri, $count);
-        }
-
-        $uri = "/" . trim($uri, "/");
-        return $uri;
     }
 }

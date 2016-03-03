@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Services\\' => array($baseDir . '/Services'),
+    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Core\\' => array($baseDir . '/Core'),
     'Application\\Models\\' => array($baseDir . '/Application/Models'),
     'Application\\Controllers\\' => array($baseDir . '/Application/Controllers'),

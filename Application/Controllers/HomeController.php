@@ -15,7 +15,8 @@ class HomeController extends BaseController
 {
     public function actionIndex(Request $request)
     {
-        View::make("home")->withTitle("Information")
-                           ->withContent("Hello World");
+//        View::make("home")->withTitle("Information")
+//                           ->withContent("Hello World");
+        echo "homecontroller";
     }
 }

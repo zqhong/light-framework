@@ -7,7 +7,7 @@
  */
 
 $logger->info("setting routes...");
-$router = new \Core\Router;
+$router = new \Core\Router();
 
 // get方法，完整匹配（示例）
 $router->get("/hello", function() {

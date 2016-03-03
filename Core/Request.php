@@ -25,7 +25,7 @@ class Request
     /**
      * 实例句柄
      *
-     * @var Core\Request
+     * @var \Core\Request
      */
     private static $_instance = NULL;
 
@@ -55,6 +55,16 @@ class Request
         }
 
         return self::$_instance;
+    }
+
+    /**
+     * 重置成员变量
+     */
+    public function reset()
+    {
+        $this->_baseUrl = NULL;
+        $this->_pathInfo = NULL;
+        $this->_requestUri = NULL;
     }
 
     /**

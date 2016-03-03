@@ -5,4 +5,5 @@ composer.phar
 /logs
 /Logs
 .DS_Store
-/vendor
+/vendor/*
+!/vendor/composer/

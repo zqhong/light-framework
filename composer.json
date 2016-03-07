@@ -12,7 +12,8 @@
   "license": "MIT",
   "require": {
     "php": ">=5.4.0",
-    "phpunit/phpunit": "4.8.23"
+    "phpunit/phpunit": "4.8.23",
+    "symfony/var-dumper": ">= 2.8"
   },
   "autoload": {
     "psr-4": {
